@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Crosswords API
+  description: The Crosswords API provides a REST interface that supports the retrieval
+    of crossword grids.
+  contact:
+    name: Red Foot Bear
+    url: http://www.redfootbear.com
+    email: contact@redfootbear.com
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/
+    description: SwaggerHub API Auto Mocking
+tags:
+  - name: crosswords
+paths:
+  /crosswords:
+    get:
+      tags:
+        - crosswords
+      summary: Retrieve crossword
+      description: Generate a crossword grid based on the number of columns and lines.
+      parameters:
+        - name: columns
+          in: query
+          description: The number of columns in the crossword grid.
+          required: true
+          style: form
+          explode: true
+          schema:
+            maximum: 10.0
+            minimum: 3
+            type: integer
+            format: int32
+            default: 5
+        - name: lines
+          in: query
+          description: The number of lines in the crossword grid.
+          required: true
+          style: form
+          explode: true
+          schema:
+            maximum: 10.0
+            minimum: 3
+            type: integer
+            format: int32
+            default: 5
+        - name: language
+          in: query
+          description: The crossword language.
+          required: true
+          style: form
+          explode: true
+          schema:
+            pattern: ^[a-zA-Z]{2}-[a-zA-Z]{2}$
+            type: string
+      responses:
+        "200":
+          description: Crossword successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grid'
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+components:
+  schemas:
+    Grid:
+      type: object
+      properties:
+        columnAmount:
+          type: integer
+          format: int32
+        lineAmount:
+          type: integer
+          format: int32
+        clues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Clue'
+        tiles:
+          type: array
+          description: A list of lists representing the columns and lines
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Tile'
+    Clue:
+      type: object
+      properties:
+        text:
+          type: string
+        direction:
+          $ref: '#/components/schemas/Direction'
+    Tile:
+      type: object
+      properties:
+        content:
+          pattern: ^[A-Z0]{1}$
+          type: string
+        direction:
+          $ref: '#/components/schemas/Direction'
+        number:
+          type: integer
+        isFirstCharacter:
+          type: boolean
+    Direction:
+      type: string
+      enum:
+        - ACROSS
+        - DOWN

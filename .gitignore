@@ -1,0 +1,19 @@
+## IntelliJ IDEA
+*.iml
+/.idea/*.xml
+/.idea/codeStyles
+/.idea/dictionaries
+/.idea/modules
+/.idea/httpRequests
+!/.idea/runConfigurations/
+
+## Gradle
+/.gradle/
+
+## Build Folders
+/build/
+/out/
+/target/
+
+## Embedded Neo4j
+/database

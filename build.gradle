@@ -1,0 +1,66 @@
+plugins {
+    id "java"
+    id "idea"
+    id "io.quarkus" version "${quarkusVersion}"
+    id "org.openapi.generator" version "${openapiGeneratorPluginVersion}"
+    id "org.sonarqube" version "${sonarqubePluginVersion}"
+}
+
+group "redfootbear.crosswords"
+version "1.0-SNAPSHOT"
+description "The Crosswords API provides a REST interface that supports the retrieval of crossword matrices."
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_14
+    targetCompatibility = JavaVersion.VERSION_14
+}
+
+configurations {
+    testAnnotationProcessor.extendsFrom annotationProcessor
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation enforcedPlatform("io.quarkus:quarkus-universe-bom:${quarkusVersion}")
+    implementation "io.quarkus:quarkus-config-yaml"
+    implementation "io.quarkus:quarkus-smallrye-openapi"
+    implementation "io.quarkus:quarkus-resteasy-jackson"
+    implementation "io.quarkus:quarkus-neo4j"
+
+    compile "io.swagger:swagger-annotations:${swaggerVersion}"
+    compile "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito'
+    testImplementation 'io.rest-assured:rest-assured'
+    testImplementation "org.neo4j:neo4j:${neo4jVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+openApiGenerate {
+    generatorName = "jaxrs-spec"
+    inputSpec = "$rootDir/api/crosswords.yaml"
+    outputDir = "$buildDir/generate-resources/openapi"
+    apiPackage = "redfootbear.crosswords.generated.resource"
+    modelPackage = "redfootbear.crosswords.generated.model"
+    configOptions = [
+            generatePom            : "false",
+            dateLibrary            : "java8",
+            interfaceOnly          : "true",
+            useSwaggerAnnotations  : "false",
+            hideGenerationTimestamp: "true",
+            openApiSpecFileLocation: "resources/META-INF/openapi.yaml",
+            sourceFolder           : ""
+    ]
+
+    sourceSets.main.java.srcDir "$buildDir/generate-resources/openapi"
+}
+
+compileJava.dependsOn tasks.openApiGenerate
