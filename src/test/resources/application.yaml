@@ -1,0 +1,5 @@
+quarkus:
+  neo4j:
+    uri: bolt://localhost:7688
+    authentication:
+      disabled: true

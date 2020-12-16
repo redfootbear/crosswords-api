@@ -1,0 +1,80 @@
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "MAPLE"
+}
+
+###
+
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "SYRUP"
+}
+
+###
+
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "HAPPY"
+}
+
+###
+
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "MAGIC"
+}
+
+###
+
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "PEACE"
+}
+
+###
+
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "POWER"
+}
+
+###
+
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "FAITH"
+}
+
+###
+
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "READY"
+}
+
+###
+
+POST http://localhost:8080/words
+Content-Type: application/json
+
+{
+    "word": "QUIET"
+}
+
+###

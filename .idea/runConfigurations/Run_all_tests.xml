@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run all tests" type="JUnit" factoryName="JUnit">
+    <module name="crosswords-api.test" />
+    <shortenClasspath name="MANIFEST" />
+    <extension name="coverage" sample_coverage="false" />
+    <option name="PACKAGE_NAME" value="redfootbear.crosswords" />
+    <option name="MAIN_CLASS_NAME" value="" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="package" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
