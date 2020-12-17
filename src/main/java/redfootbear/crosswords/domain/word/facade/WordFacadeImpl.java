@@ -26,4 +26,14 @@ public class WordFacadeImpl implements WordFacade {
         return word;
     }
 
+    @Override
+    public Word findByWord(String word) {
+        return wordRepository.findByWord(word);
+    }
+
+    @Override
+    public Word findByLengthAndIndexPositionAndIndexCharacter(Integer length, Integer position, Character character) {
+        return wordRepository.findByLengthAndIndexPositionAndIndexCharacter(5, 4, 'E');
+    }
+
 }

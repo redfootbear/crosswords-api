@@ -7,4 +7,8 @@ public interface WordFacade {
 
     Word createNewWord(NewWord newWord);
 
+    Word findByWord(String word);
+
+    Word findByLengthAndIndexPositionAndIndexCharacter(Integer length, Integer position, Character character);
+
 }

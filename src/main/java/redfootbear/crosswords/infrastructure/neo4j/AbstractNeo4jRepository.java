@@ -5,7 +5,7 @@ import org.neo4j.driver.Session;
 
 public abstract class AbstractNeo4jRepository {
 
-    private final Driver driver;
+    protected final Driver driver;
 
     protected AbstractNeo4jRepository(Driver driver) {
         this.driver = driver;

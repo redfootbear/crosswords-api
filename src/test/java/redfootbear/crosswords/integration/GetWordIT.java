@@ -11,28 +11,33 @@ import org.neo4j.driver.Driver;
 import redfootbear.crosswords.api.word.NewWord;
 import redfootbear.crosswords.api.word.NewWordResolver;
 import redfootbear.crosswords.api.word.NewWordResolver.FakeNewWord;
+import redfootbear.crosswords.domain.word.facade.WordFacade;
 
 @QuarkusTest
 @ExtendWith(NewWordResolver.class)
-public class SaveWordIT extends AbstractNeo4jEmbeddedIT {
+public class GetWordIT extends AbstractNeo4jEmbeddedIT {
 
     private static final String WORDS_URL = "words";
 
+    private final WordFacade wordFacade;
+
     @Inject
-    public SaveWordIT(Driver driver) {
+    public GetWordIT(Driver driver, WordFacade wordFacade) {
         super(driver);
+        this.wordFacade = wordFacade;
     }
 
     @Test
-    void givenValidNewWord_WhenPOSTToWordsAPI_ThenReceive201(@FakeNewWord NewWord newWord) {
+    void givenValidWord_WhenGETFromWordsAPI_Then200(@FakeNewWord NewWord newWord) {
+        wordFacade.createNewWord(newWord);
         given()
                 .contentType(ContentType.JSON)
                 .basePath(WORDS_URL)
-                .body(newWord)
+                .pathParam("word", newWord.getWord())
                 .when()
-                .post()
+                .get("{word}")
                 .then()
-                .statusCode(201);
+                .statusCode(200);
     }
 
 }

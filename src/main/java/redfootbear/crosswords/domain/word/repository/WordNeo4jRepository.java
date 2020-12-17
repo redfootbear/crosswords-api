@@ -1,7 +1,10 @@
 package redfootbear.crosswords.domain.word.repository;
 
+import static redfootbear.crosswords.domain.word.model.Word.PROPERTY_WORD;
+
 import javax.inject.Inject;
 import org.neo4j.driver.Driver;
+import org.neo4j.driver.Record;
 import org.neo4j.driver.Values;
 import redfootbear.crosswords.domain.word.model.Word;
 import redfootbear.crosswords.domain.word.repository.exception.WordNotPersistedException;
@@ -18,8 +21,11 @@ public class WordNeo4jRepository extends AbstractNeo4jRepository implements Word
             "$word})-[:HAS_LENGTH]->(l)";
     private static final String QUERY_MERGE_WORD_AND_INDEX = "MERGE (i:Index {character: $character, position: " +
             "$position}) MERGE (w:Word {word: $word}) MERGE (w)-[:HAS_INDEX]->(i)";
+    private static final String QUERY_MATCH_BY_LENGTH_AND_INDEX = "MATCH (i:Index)<-[:HAS_INDEX]-(w:Word)" +
+            "-[:HAS_LENGTH]->(l:Length) WHERE l.size = $length AND i.position = $position AND i.character = " +
+            "$character WITH w, rand() AS number RETURN w ORDER BY number LIMIT 1";
+    private static final String QUERY_MATCH_BY_WORD = "MATCH (w:Word) WHERE w.word = $word RETURN w";
 
-    private static final String PROPERTY_WORD = "word";
     private static final String PROPERTY_LENGTH = "length";
     private static final String PROPERTY_POSITION = "position";
     private static final String PROPERTY_CHARACTER = "character";
@@ -55,6 +61,22 @@ public class WordNeo4jRepository extends AbstractNeo4jRepository implements Word
                 Values.parameters(PROPERTY_CHARACTER, character,
                         PROPERTY_POSITION, position,
                         PROPERTY_WORD, word)));
+    }
+
+    @Override
+    public Word findByWord(String word) {
+        Record result = getSession().readTransaction(tx -> tx.run(QUERY_MATCH_BY_WORD,
+                Values.parameters(PROPERTY_WORD, word.toUpperCase())).single());
+        return Word.from(result.get("w").asNode());
+    }
+
+    @Override
+    public Word findByLengthAndIndexPositionAndIndexCharacter(Integer length, Integer position, Character character) {
+        Record result = getSession().readTransaction(tx -> tx.run(QUERY_MATCH_BY_LENGTH_AND_INDEX,
+                Values.parameters(PROPERTY_LENGTH, length,
+                        PROPERTY_POSITION, position,
+                        PROPERTY_CHARACTER, character)).single());
+        return Word.from(result.get("w").asNode());
     }
 
     public void validateConstraints() {

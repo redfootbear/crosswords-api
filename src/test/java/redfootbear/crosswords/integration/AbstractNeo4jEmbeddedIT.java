@@ -1,4 +1,4 @@
-package redfootbear.neo4j;
+package redfootbear.crosswords.integration;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.neo4j.driver.Driver;
