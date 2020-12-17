@@ -5,6 +5,7 @@
 /.idea/dictionaries
 /.idea/modules
 /.idea/httpRequests
+/.idea/sonarlint
 !/.idea/runConfigurations/
 
 ## Gradle

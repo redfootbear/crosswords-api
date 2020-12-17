@@ -13,7 +13,7 @@ public abstract class AbstractNeo4jEmbeddedIT {
     }
 
     @BeforeEach
-    public void beforeEach() {
+    void beforeEach() {
         emptyDatabase();
     }
 
