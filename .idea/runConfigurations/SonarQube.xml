@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Test &amp; SonarQube" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="SonarQube" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="env">
         <map>
@@ -15,7 +15,6 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="test" />
           <option value="sonarqube" />
         </list>
       </option>
@@ -23,22 +22,6 @@
     </ExternalSystemSettings>
     <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
     <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-    <extension name="coverage" runner="jacoco">
-      <pattern>
-        <option name="PATTERN" value="redfootbear.crosswords.*" />
-        <option name="ENABLED" value="true" />
-      </pattern>
-      <pattern>
-        <option name="PATTERN" value="redfootbear.crosswords.generated.*" />
-        <option name="ENABLED" value="true" />
-        <option name="INCLUDE" value="false" />
-      </pattern>
-      <pattern>
-        <option name="PATTERN" value="redfootbear.crosswords.integration.*" />
-        <option name="ENABLED" value="true" />
-        <option name="INCLUDE" value="false" />
-      </pattern>
-    </extension>
     <DebugAllEnabled>false</DebugAllEnabled>
     <method v="2" />
   </configuration>
