@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.neo4j.driver.types.Node;
-import redfootbear.crosswords.api.crossword.NewCrossword;
+import redfootbear.crosswords.api.crossword.NewCrosswordDTO;
 
 @Getter
 @Builder(toBuilder = true)
@@ -23,7 +23,7 @@ public class Crossword {
     private List<String> clues;
     private List<Character> indexes;
 
-    public static Crossword from(NewCrossword newCrossword) {
+    public static Crossword from(NewCrosswordDTO newCrossword) {
         return Crossword.builder()
                 .word(newCrossword.getWord().toUpperCase())
                 .build();

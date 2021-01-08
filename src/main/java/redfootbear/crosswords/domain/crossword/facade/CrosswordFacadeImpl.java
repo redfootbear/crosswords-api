@@ -1,7 +1,7 @@
 package redfootbear.crosswords.domain.crossword.facade;
 
 import javax.inject.Inject;
-import redfootbear.crosswords.api.crossword.NewCrossword;
+import redfootbear.crosswords.api.crossword.NewCrosswordDTO;
 import redfootbear.crosswords.domain.crossword.model.Crossword;
 import redfootbear.crosswords.domain.crossword.repository.CrosswordRepository;
 import redfootbear.crosswords.domain.crossword.service.CrosswordIndexerService;
@@ -19,7 +19,7 @@ public class CrosswordFacadeImpl implements CrosswordFacade {
     }
 
     @Override
-    public Crossword createNewCrossword(NewCrossword newCrossword) {
+    public Crossword createNewCrossword(NewCrosswordDTO newCrossword) {
         Crossword crossword = Crossword.from(newCrossword);
         crosswordIndexerService.buildIndexedCrossword(crossword);
         crosswordRepository.save(crossword);

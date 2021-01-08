@@ -8,7 +8,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import redfootbear.crosswords.api.crossword.NewCrossword;
+import redfootbear.crosswords.api.crossword.NewCrosswordDTO;
 import redfootbear.crosswords.api.crossword.NewCrosswordResolver;
 import redfootbear.crosswords.api.crossword.NewCrosswordResolver.FakeNewCrossword;
 import redfootbear.crosswords.domain.crossword.model.Crossword;
@@ -32,7 +32,7 @@ class CrosswordFacadeImplTest {
 
     @Test
     void givenValidNewCrossword_WhenCreateNewCrosswordIsCalled_ThenCrosswordIndexerServiceShouldBeCalledOneTime(
-            @FakeNewCrossword NewCrossword newCrossword) {
+            @FakeNewCrossword NewCrosswordDTO newCrossword) {
         crosswordFacade.createNewCrossword(newCrossword);
         verify(crosswordIndexerService, times(1)).buildIndexedCrossword(any(Crossword.class));
     }

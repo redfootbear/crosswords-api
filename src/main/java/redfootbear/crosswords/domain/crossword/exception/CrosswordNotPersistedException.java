@@ -1,4 +1,4 @@
-package redfootbear.crosswords.domain.crossword.repository.exception;
+package redfootbear.crosswords.domain.crossword.exception;
 
 public class CrosswordNotPersistedException extends RuntimeException {
 

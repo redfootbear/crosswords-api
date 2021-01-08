@@ -4,11 +4,3 @@ quarkus:
     authentication:
       username: neo4j
       password: crosswords
-  swagger-ui:
-    always-include: true
-    path: /documentation
-
-mp:
-  openapi:
-    scan:
-      disable: true

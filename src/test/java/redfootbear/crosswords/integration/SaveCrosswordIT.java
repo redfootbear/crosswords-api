@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.neo4j.driver.Driver;
-import redfootbear.crosswords.api.crossword.NewCrossword;
+import redfootbear.crosswords.api.crossword.NewCrosswordDTO;
 import redfootbear.crosswords.api.crossword.NewCrosswordResolver;
 import redfootbear.crosswords.api.crossword.NewCrosswordResolver.FakeNewCrossword;
 import redfootbear.crosswords.domain.crossword.model.Crossword;
@@ -26,7 +26,7 @@ class SaveCrosswordIT extends AbstractNeo4jEmbeddedIT {
     }
 
     @Test
-    void givenValidNewCrossword_WhenPOSTToWordsAPI_ThenReceive201(@FakeNewCrossword NewCrossword newCrossword) {
+    void givenValidNewCrossword_WhenPOSTToWordsAPI_ThenReceive201(@FakeNewCrossword NewCrosswordDTO newCrossword) {
         Crossword crossword = given()
                 .contentType(ContentType.JSON)
                 .basePath(WORDS_URL)

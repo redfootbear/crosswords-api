@@ -10,10 +10,10 @@ import org.mockito.Mockito;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Result;
 import org.neo4j.driver.Session;
+import redfootbear.crosswords.domain.crossword.exception.CrosswordNotPersistedException;
 import redfootbear.crosswords.domain.crossword.model.Crossword;
 import redfootbear.crosswords.domain.crossword.model.CrosswordResolver;
 import redfootbear.crosswords.domain.crossword.model.CrosswordResolver.FakeCrossword;
-import redfootbear.crosswords.domain.crossword.repository.exception.CrosswordNotPersistedException;
 
 @ExtendWith(CrosswordResolver.class)
 class CrosswordNeo4JRepositoryTest {

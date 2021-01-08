@@ -25,14 +25,14 @@ class CrosswordResourceImplTest {
 
     @Test
     void givenAValidNewCrossword_WhenAddNewWordIsCalled_ThenCrosswordFacadeShouldBeCalled(
-            @FakeNewCrossword NewCrossword newCrossword) {
+            @FakeNewCrossword NewCrosswordDTO newCrossword) {
         crosswordResource.postNewCrossword(newCrossword);
-        Mockito.verify(crosswordFacade).createNewCrossword(any(NewCrossword.class));
+        Mockito.verify(crosswordFacade).createNewCrossword(any(NewCrosswordDTO.class));
     }
 
     @Test
     void givenAValidNewCrossword_WhenAddNewCrosswordIsCalled_ThenResponseIs201(
-            @FakeNewCrossword NewCrossword newCrossword) {
+            @FakeNewCrossword NewCrosswordDTO newCrossword) {
         Response response = crosswordResource.postNewCrossword(newCrossword);
         Assertions.assertEquals(Response.Status.CREATED.getStatusCode(), response.getStatus());
     }

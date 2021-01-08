@@ -22,7 +22,7 @@ public class NewCrosswordResolver implements ParameterResolver {
     @Override
     public Object resolveParameter(ParameterContext parameterContext,
                                    ExtensionContext extensionContext) throws ParameterResolutionException {
-        return NewCrossword.builder()
+        return NewCrosswordDTO.builder()
                 .word(AlphabeticRandomizer.getRandomLetters(new Random().nextInt(10) + 2))
                 .build();
     }

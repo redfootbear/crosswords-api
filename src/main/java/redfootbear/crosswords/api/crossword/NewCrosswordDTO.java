@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NewCrossword {
+public class NewCrosswordDTO {
 
     private String word;
     private List<String> clues;

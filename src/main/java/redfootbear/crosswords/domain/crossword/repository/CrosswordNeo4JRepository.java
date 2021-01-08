@@ -4,8 +4,8 @@ import javax.inject.Inject;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.Record;
 import org.neo4j.driver.Values;
+import redfootbear.crosswords.domain.crossword.exception.CrosswordNotPersistedException;
 import redfootbear.crosswords.domain.crossword.model.Crossword;
-import redfootbear.crosswords.domain.crossword.repository.exception.CrosswordNotPersistedException;
 import redfootbear.crosswords.infrastructure.neo4j.AbstractNeo4jRepository;
 
 public class CrosswordNeo4JRepository extends AbstractNeo4jRepository implements CrosswordRepository {

@@ -9,10 +9,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
-import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
+import redfootbear.crosswords.domain.crossword.exception.CrosswordNotPersistedException;
 import redfootbear.crosswords.domain.crossword.facade.CrosswordFacade;
 import redfootbear.crosswords.domain.crossword.model.Crossword;
-import redfootbear.crosswords.domain.crossword.repository.exception.CrosswordNotPersistedException;
 
 @Path("crosswords")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -23,7 +22,7 @@ public class CrosswordResourceImpl {
     private final CrosswordFacade crosswordFacade;
 
     @POST
-    public Response postNewCrossword(@RequestBody NewCrossword newCrossword) {
+    public Response postNewCrossword(NewCrosswordDTO newCrossword) {
         try {
             Crossword crossword = crosswordFacade.createNewCrossword(newCrossword);
             return Response.status(Response.Status.CREATED).entity(crossword).build();
