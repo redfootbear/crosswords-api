@@ -12,13 +12,12 @@ import redfootbear.crosswords.api.crossword.NewCrosswordDTO;
 import redfootbear.crosswords.api.crossword.NewCrosswordResolver;
 import redfootbear.crosswords.api.crossword.NewCrosswordResolver.FakeNewCrossword;
 import redfootbear.crosswords.domain.crossword.facade.CrosswordFacade;
-import redfootbear.crosswords.domain.crossword.model.Crossword;
 
 @QuarkusTest
 @ExtendWith(NewCrosswordResolver.class)
 class GetCrosswordIT extends AbstractNeo4jEmbeddedIT {
 
-    private static final String WORDS_URL = "crosswords";
+    private static final String CROSSWORDS_URL = "crosswords";
 
     private final CrosswordFacade crosswordFacade;
 
@@ -29,14 +28,14 @@ class GetCrosswordIT extends AbstractNeo4jEmbeddedIT {
     }
 
     @Test
-    void givenValidCrossword_WhenGETFromWordsAPI_Then200(@FakeNewCrossword NewCrosswordDTO newCrossword) {
-        Crossword crossword = crosswordFacade.createNewCrossword(newCrossword);
+    void givenValidCrossword_WhenGETFromCrosswordsAPI_Then200(@FakeNewCrossword NewCrosswordDTO newCrossword) {
+        crosswordFacade.createNewCrossword(newCrossword);
         given()
                 .contentType(ContentType.JSON)
-                .basePath(WORDS_URL)
-                .pathParam("word", newCrossword.getWord())
+                .basePath(CROSSWORDS_URL)
+                .pathParam("crossword", newCrossword.getWord())
                 .when()
-                .get("{word}")
+                .get("{crossword}")
                 .then()
                 .statusCode(200);
     }

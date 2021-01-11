@@ -1,2 +1,4 @@
-GET http://{{host}}/crosswords?columns=4&lines=4&language=en-us
+GET http://localhost:8080/crosswords/maple
 Accept: application/json
+
+###

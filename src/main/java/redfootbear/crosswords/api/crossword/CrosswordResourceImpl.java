@@ -34,10 +34,10 @@ public class CrosswordResourceImpl {
     }
 
     @GET
-    @Path("{word}")
-    public Response getCrosswordByWord(@PathParam("word") String word) {
+    @Path("{crossword}")
+    public Response getCrosswordByWord(@PathParam("crossword") String crossword) {
         try {
-            Crossword result = crosswordFacade.findByWord(word.toUpperCase());
+            Crossword result = crosswordFacade.findByWord(crossword.toUpperCase());
             return Response.ok(result).build();
         } catch (Exception e) {
             return Response.status(Response.Status.NOT_FOUND).build();

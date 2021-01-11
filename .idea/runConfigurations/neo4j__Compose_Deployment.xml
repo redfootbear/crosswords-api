@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="neo4j: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" server-name="Localhost">
+  <configuration default="false" name="neo4j: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker - Localhost">
     <deployment type="docker-compose.yml">
       <settings>
         <option name="sourceFilePath" value="src/test/docker/neo4j/docker-compose.yml" />
