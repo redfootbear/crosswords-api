@@ -1,9 +1,7 @@
 package redfootbear.randomizer;
 
 import java.util.Random;
-import lombok.experimental.UtilityClass;
 
-@UtilityClass
 public class AlphabeticRandomizer {
 
     public static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVXWYZ";

@@ -29,7 +29,7 @@ dependencies {
     implementation "io.quarkus:quarkus-resteasy-jackson"
     implementation "io.quarkus:quarkus-neo4j"
 
-    compile "org.projectlombok:lombok:${lombokVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
     testImplementation "io.quarkus:quarkus-junit5"
